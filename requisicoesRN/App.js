@@ -1,11 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import api  from './src/services/api';
+
 export default function App() {
+
+  const [filmes, setFilmes] = useState([]);
+
+  useEffect(()=>{
+
+    async function getFilmes() {
+      const resposta = await api.get('r-api/?api=filmes');
+      //console.log(resposta.data);
+     setFilmes(resposta.data);
+      
+    }
+    getFilmes();
+
+  },[]);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+
+      <Text>Filmes</Text>
+    
     </View>
   );
 }
