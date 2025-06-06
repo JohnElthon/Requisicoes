@@ -2,37 +2,41 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 
 import api  from './src/services/api';
-
+import Filme from './src/Filmes'
+ 
 export default function App() {
-
-  const [filmes, setFilmes] = useState([]);
+ 
+  const [filmes, setfilmes] = useState(['']);
 
   useEffect(()=>{
 
-    async function getFilmes() {
+    async function getFilmes(){
       const resposta = await api.get('r-api/?api=filmes');
-      //console.log(resposta.data);
-     setFilmes(resposta.data);
-      
+        // o array filmes ja esta guardando
+        // console.log(resposta.data);
+      setfilmes(resposta.data);
     }
     getFilmes();
-
-  },[]);
-
+  },[])
+ 
+ 
   return (
     <View style={styles.container}>
-
-      <Text>Filmes</Text>
-    
+   
+      <FlatList
+        data={filmes}
+        renderItem={({item})=> <Filme data={item}></Filme>}
+      ></FlatList>
+ 
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+     flex: 1,
+   //backgroundColor: '#fff',
+   //alignItems: 'center',
+   //justifyContent: 'center',
+   },
 });
