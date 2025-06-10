@@ -19,7 +19,7 @@ export default function Filmes({ data }) {
                 </TouchableOpacity>
             </View>
             <Modal animationType="slide" visible={modalVisible} transparent={true} >
-                <Detalhes/>
+                <Detalhes filme={data} fecharModal={()=> setModalVisible(false)}/>
             </Modal>
 
         </View>
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
         borderRadius:10
     },
     capa: {
+        
         height: 250,
         zIndex: 2,
     },

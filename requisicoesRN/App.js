@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, ActivityIndicator } from 'react-native';
 
 import api  from './src/services/api';
 import Filme from './src/Filmes'
@@ -7,6 +7,7 @@ import Filme from './src/Filmes'
 export default function App() {
  
   const [filmes, setfilmes] = useState(['']);
+  const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
 
@@ -15,10 +16,18 @@ export default function App() {
         // o array filmes ja esta guardando
         // console.log(resposta.data);
       setfilmes(resposta.data);
+      setLoading(false);
     }
     getFilmes();
   },[])
  
+  if(loading){
+    return(
+      <View style={{alignItems:'center', justifyContent:'center', flex:1}}> 
+        <ActivityIndicator color='#121212' size={40}></ActivityIndicator>
+      </View>
+    )
+  }else {
  
   return (
     <View style={styles.container}>
@@ -30,6 +39,7 @@ export default function App() {
  
     </View>
   );
+}
 }
 
 const styles = StyleSheet.create({
