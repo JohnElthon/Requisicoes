@@ -8,7 +8,6 @@ O **Requisicoes** foi desenvolvido para praticar o consumo de dados externos em 
 
 O projeto trabalha com requisições HTTP, carregamento de dados, exibição de listas e apresentação de detalhes em tela/modal, simulando uma aplicação que busca informações em uma API e apresenta os resultados ao usuário.
 
-Este projeto é um estudo intermediário dentro da minha evolução com React Native, pois envolve conceitos além da criação de telas estáticas.
 
 ## Funcionalidades
 
